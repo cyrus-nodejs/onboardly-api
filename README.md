@@ -1,167 +1,88 @@
-#  🚀 Employee Invite System – Backend
+ONBOARDLY – Backend API
 
-### NestJS + MongoDB + JWT Authentication
+NestJS REST API powering Onboardly.
 
-This is the backend API for the Employee Invite System, a mini-project where:
+Handles:
 
-- Admins can register and log in
+Authentication
 
-- Admins can generate invite links for employees
+Organisations
 
-- Employees can register using unique invite tokens
+Invites
 
-- System tracks which admin invited which employee
+Employee registration
 
-- The server is built using NestJS, MongoDB, and JWT.
+Ownership tracking
 
+🛠 Tech Stack
 
----
+NestJS
 
-## 📌 Features
+MongoDB (Mongoose)
 
-### 👨‍💼 Admin
+JWT Authentication
 
-- Register an admin
+bcrypt password hashing
 
-- Login admin
+TypeScript
 
-- JWT authentication
+🔐 Environment Variables
 
-- Protected routes for invite generation
+Create .env
 
-### ✉️ Invite System
+MONGO_URI=mongodb://localhost/onboardly
+JWT_SECRET=supersecretkey
+CLIENT_URL=http://localhost:3001
 
-- Generate a unique invite token (UUID)
+🚀 Start Server
+npm install
+npm run start:dev
 
-- Return the link to the frontend
 
-- Mark invite as used after registration
+Runs on:
 
-### 👤 Employee
+http://localhost:3000
 
-- Register via invite link
+🔗 Core API Routes
+Method	Route
+POST	/auth/register
+POST	/auth/login
+POST	/organisation
+GET	/organisation/me
+POST	/invites
+GET	/invites
+POST	/invites/:token/accept
+GET	/users/employees
+🗃️ Core Models
 
-- Store employee details
+User
 
-- Track invitedBy admin ID
+Organisation
 
-###  🔐 Security
+Invite
 
-- Hashed passwords (bcrypt)
+Tracks:
 
-- JWT authentication
+Who invited whom
 
-- Admin-only protected endpoints
+Which organisation they belong to
 
-###  🛠️ Tech Stack
+Invite status
 
-- NestJS — Backend framework
+🧪 API Testing
 
-- MongoDB + Mongoose — Database
+A Postman collection is included:
 
-- JWT — Access token authentication
+employee-invite-system.postman_collection.json
 
-- Bcrypt — Password hashing
+🧠 Architecture Philosophy
 
-- Class Validator — DTO validation
+Modular NestJS services
 
-- UUID — Unique invite tokens
+Strict ownership rules
 
----
+Stateless JWT auth
 
-## Getting Started
+Clean data relationships
 
-Follow these steps to set up and run the project on your local machine.
-
----
-
-### Prerequisites
-
-Make sure you have the following installed on your system:
-
-- [Node.js](https://nodejs.org/) (v16 or higher recommended)
-- [npm](https://www.npmjs.com/)
-
----
-
-### Clone the Repository
-
-To clone the repository, run the following command:
-
-```bash
-  git clone https://github.com/Sleeky-Programmers/employee-invite-system-api.git new-project-name
-```
-
-### Navigate to the Project Directory
-
-```bash
-  cd new-project-name
-```
-
-### Remove the existing `origin` remote
-
-```bash
-  git remote remove origin
-```
-
-### Add the remote for the new project
-
-```bash
-  git remote add origin <new-repo-url>
-```
-
-### Verify the new remote
-
-```bash
-  git remote -v
-```
-
-### Install Dependencies
-
-```bash
-  npm install
-```
-
-### Configure Environment Variables
-
-Create a .env file in the root directory of the project and define the necessary environment variables. You can use the .env.sample file as a reference:
-
-```bash
-  cp .env.sample .env
-```
-
-### Run the Application
-
-To start the application in development mode:
-
-```bash
-  npm run start:dev
-```
-
-### Running Tests (If available)
-
-Run the test suite to ensure everything is working correctly:
-
-```bash
-  npm run test
-```
-
-### Additional Commands
-
-- **Build the application for production**:
-
-```bash
-  npm run build
-```
-
-- **Run the application in production mode**:
-
-```bash
-  npm run start:prod
-```
-
-### Push changes to the new repository
-
-```bash
-  git push -u origin <branch>
-```
+Built for scaling to payroll & attendance
